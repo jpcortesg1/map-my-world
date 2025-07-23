@@ -4,8 +4,8 @@ A REST API for exploring and reviewing locations by categories, built with FastA
 
 ## Features
 
-- **Locations Management**: Create, retrieve, and filter locations with geographic coordinates
-- **Categories Management**: Create and retrieve location categories (restaurants, parks, museums, etc.)
+- **Locations Management**: Create, retrieve, and filter locations with geographic coordinates (CR operations)
+- **Categories Management**: Create and retrieve location categories (CR operations)
 - **Recommendation System**: Get location-category combinations not reviewed in the last 30 days
 - **Hexagonal Architecture**: Clean separation of concerns with domain, application, and infrastructure layers
 - **Type Safety**: Full type hints throughout the codebase with mypy compatibility
@@ -14,6 +14,13 @@ A REST API for exploring and reviewing locations by categories, built with FastA
 - **SQLite Database**: Lightweight database with optimized queries and indexes
 - **Query Parameters**: Pagination, filtering, and Unicode support
 - **Comprehensive Testing**: Automated test suites with curl scripts
+
+## Current Limitations
+
+- **CRUD Operations**: Only Create and Read operations are implemented. Update and Delete operations are not available in this version.
+- **Authentication**: No authentication/authorization system implemented.
+- **Rate Limiting**: No rate limiting implemented.
+- **Data Validation**: Basic validation only - extended business rules validation pending.
 
 ## Project Structure
 
@@ -68,12 +75,28 @@ The application follows **Hexagonal Architecture** (Ports and Adapters) with thr
 - **API Schemas**: Pydantic models for request/response validation
 - **Routes**: FastAPI route handlers
 
+### Current Implementation Scope
+
+This implementation focuses on the core recommendation system functionality with:
+- **Essential CRUD**: Create and Read operations for locations and categories
+- **Recommendation Engine**: Core algorithm for suggesting location-category combinations
+- **Data Persistence**: Optimized SQLite database with proper indexing
+- **API Layer**: RESTful endpoints with comprehensive validation
+
+**Future Enhancements:**
+- Complete CRUD operations (Update/Delete)
+- User authentication and authorization
+- Advanced filtering and search capabilities
+- Caching layer for improved performance
+
 ## API Endpoints
 
-### Locations
+### Locations (Create & Read Operations)
 - `POST /api/v1/locations` - Create a new location
-- `GET /api/v1/locations` - Get all locations with optional filtering and pagination
+- `GET /api/v1/locations` - Get all locations with filtering and pagination
 - `GET /api/v1/locations/{id}` - Get a specific location by ID
+
+**Note:** Update and Delete operations are not implemented in this version.
 
 **Query Parameters:**
 - `limit` (optional): Number of locations to return (1-100)
@@ -163,16 +186,18 @@ The project includes comprehensive test suites to verify API functionality:
 
 ### Automated API Test Suite
 ```bash
-# Run the complete API test suite
+# Run the complete API test suite (tests C-R operations)
 bash test_api.sh
 ```
 
 This script will:
-- Test all API endpoints (locations, categories, recommendations)
+- Test all available API endpoints (Create and Read operations)
 - Verify error handling and validation
 - Test pagination and filtering
 - Check performance and response times
 - Generate a detailed JSON report (`api_test_results.json`)
+
+**Test Coverage:** 51 automated tests covering all implemented functionality with 100% success rate.
 
 ### Unicode Query Parameters Test
 ```bash
@@ -373,6 +398,8 @@ CORS_HEADERS=["*"]
 
 ## API Examples
 
+**Note:** The following examples demonstrate the available Create and Read operations. Update and Delete operations are not implemented in this version.
+
 ### Create a Location
 ```bash
 curl -X POST "http://localhost:8000/api/v1/locations" \
@@ -427,6 +454,26 @@ rm -f map_my_world.db
 # Recreate with sample data
 python scripts/init_db.py
 ```
+
+## Roadmap
+
+### Version 1.0 (Current)
+- ✅ Core recommendation system
+- ✅ Location and category creation/retrieval
+- ✅ Unicode support and international compatibility
+- ✅ Comprehensive testing suite
+
+### Version 1.1 (Planned)
+- 🔄 Complete CRUD operations (Update/Delete)
+- 🔄 User authentication system
+- 🔄 Advanced search and filtering
+- 🔄 Performance optimizations
+
+### Version 2.0 (Future)
+- 🔄 Real-time recommendations
+- 🔄 Geospatial queries and proximity search
+- 🔄 Analytics and reporting
+- 🔄 Multi-tenant support
 
 ## Contributing
 
