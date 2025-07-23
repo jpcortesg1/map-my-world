@@ -1,0 +1,1 @@
+"""Locations module for Map My World API.""" 

@@ -1,0 +1,1 @@
+"""Use cases package for categories application.""" 

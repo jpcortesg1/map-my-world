@@ -1,0 +1,1 @@
+"""Use cases package for recommendations application.""" 

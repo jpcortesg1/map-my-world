@@ -1,0 +1,1 @@
+"""Recommendations API package for Map My World API.""" 

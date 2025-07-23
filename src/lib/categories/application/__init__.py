@@ -1,0 +1,1 @@
+"""Categories application package for Map My World API.""" 

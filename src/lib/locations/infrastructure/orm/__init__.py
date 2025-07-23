@@ -1,0 +1,1 @@
+"""Locations ORM package for Map My World API.""" 
