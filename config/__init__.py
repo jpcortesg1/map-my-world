@@ -1,0 +1,1 @@
+"""Configuration package for Map My World API.""" 
